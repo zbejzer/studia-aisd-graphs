@@ -1,4 +1,5 @@
 #include "graph.hpp"
+#include "dfs.hpp"
 #include "quicksort.hpp"
 
 #include <cstdio>
@@ -75,6 +76,26 @@ void Graph::printDegreeSequence() const
     printf("\n");
 
     free(degree_sequence);
+
+    return;
+}
+
+void Graph::printComponentsCount() const
+{
+    unsigned long int components_count = 0;
+    bool *visited = static_cast<bool *>(calloc(sizeof(bool), vertices_count));
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        if (!visited[i])
+        {
+            components_count++;
+            dfs(visited, &vertices[i]);
+        }
+    }
+
+    free(visited);
+    printf("%lu\n", components_count);
 
     return;
 }

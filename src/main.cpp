@@ -28,8 +28,9 @@ int main()
             }
         }
         graph.printDegreeSequence();
+        graph.printComponentsCount();
         //graph.debugPrintVertices();
-        for (size_t i = 0; i < 9; i++)
+        for (size_t i = 0; i < 8; i++)
         {
             printf("?\n");
         }

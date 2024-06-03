@@ -24,6 +24,7 @@
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dfs.hpp" />
     <ClInclude Include="graph.hpp" />
     <ClInclude Include="quicksort.hpp" />
     <ClInclude Include="vertex.hpp" />
