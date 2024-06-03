@@ -13,7 +13,8 @@ class Graph
     Graph(const Graph &other);
     ~Graph();
 
-    void debugPrintVertices();
+    void debugPrintVertices() const;
+    void printDegreeSequence() const;
 
     Graph operator=(Graph other);
 };

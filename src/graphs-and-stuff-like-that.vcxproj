@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph.hpp" />
+    <ClInclude Include="quicksort.hpp" />
     <ClInclude Include="vertex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

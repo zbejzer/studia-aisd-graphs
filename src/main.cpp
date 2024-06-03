@@ -27,7 +27,12 @@ int main()
                 graph.vertices[v].neighbours[n] = &graph.vertices[neighbour_num - 1];
             }
         }
-        graph.debugPrintVertices();
+        graph.printDegreeSequence();
+        //graph.debugPrintVertices();
+        for (size_t i = 0; i < 9; i++)
+        {
+            printf("?\n");
+        }
     }
 
     return 0;

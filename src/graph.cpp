@@ -1,7 +1,8 @@
 #include "graph.hpp"
+#include "quicksort.hpp"
 
-#include <cstdlib>
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <utility>
 
@@ -28,7 +29,7 @@ Graph::Graph(const Graph &other) : vertices_count(other.vertices_count)
     if (vertices_count > 0)
     {
         vertices = static_cast<Vertex *>(malloc(sizeof(Vertex) * vertices_count));
-        #pragma warning(suppress : 6387)
+#pragma warning(suppress : 6387)
         memcpy(vertices, other.vertices, sizeof(Vertex) * vertices_count);
     }
     else
@@ -46,13 +47,36 @@ Graph::~Graph()
     free(vertices);
 }
 
-void Graph::debugPrintVertices()
+void Graph::debugPrintVertices() const
 {
     for (unsigned long int i = 0; i < vertices_count; i++)
     {
         vertices[i].debugPrintShort();
         printf("\n");
     }
+}
+
+void Graph::printDegreeSequence() const
+{
+    unsigned long int *degree_sequence =
+        static_cast<unsigned long int *>(malloc(sizeof(unsigned long int) * vertices_count));
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+#pragma warning(suppress : 6011)
+        degree_sequence[i] = vertices[i].neighbours_count;
+    }
+
+    quickSort<unsigned long int>(degree_sequence, 0, vertices_count - 1, compareULInt);
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        printf("%lu ", degree_sequence[i]);
+    }
+    printf("\n");
+
+    free(degree_sequence);
+
+    return;
 }
 
 Graph Graph::operator=(Graph other)
