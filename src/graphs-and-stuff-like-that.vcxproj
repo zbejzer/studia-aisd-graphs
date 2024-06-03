@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="graph.hpp" />
+    <ClInclude Include="vertex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
