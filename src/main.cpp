@@ -29,8 +29,9 @@ int main()
         }
         graph.printDegreeSequence();
         graph.printComponentsCount();
+        graph.printBipartiteness();
         //graph.debugPrintVertices();
-        for (size_t i = 0; i < 8; i++)
+        for (size_t i = 0; i < 7; i++)
         {
             printf("?\n");
         }

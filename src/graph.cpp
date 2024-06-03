@@ -90,12 +90,39 @@ void Graph::printComponentsCount() const
         if (!visited[i])
         {
             components_count++;
-            dfs(visited, &vertices[i]);
+            depthFirstSearch(visited, &vertices[i]);
         }
     }
 
     free(visited);
     printf("%lu\n", components_count);
+
+    return;
+}
+
+void Graph::printBipartiteness()
+{
+    bool is_bipartite = true;
+    bool *visited = static_cast<bool *>(calloc(sizeof(bool), vertices_count));
+
+    for (unsigned long int i = 0; i < vertices_count && is_bipartite; i++)
+    {
+        if (!visited[i])
+        {
+            is_bipartite = bipartiteDfs(visited, &vertices[i], 0);
+        }
+    }
+
+    free(visited);
+
+    if (is_bipartite)
+    {
+        printf("T\n");
+    }
+    else
+    {
+        printf("F\n");
+    }
 
     return;
 }
