@@ -149,6 +149,12 @@ void Graph::printEccentricity() const
     return;
 }
 
+void Graph::printPlanarity() const
+{
+    // TODO implement planarity test
+    printf("?\n");
+}
+
 Graph Graph::operator=(Graph other)
 {
     std::swap(vertices_count, other.vertices_count);

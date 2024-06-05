@@ -18,6 +18,7 @@ class Graph
     void printComponentsCount() const;
     void printBipartiteness();
     void printEccentricity() const;
+    void printPlanarity() const;
 
     Graph operator=(Graph other);
 };
