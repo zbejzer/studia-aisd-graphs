@@ -17,6 +17,7 @@ class Graph
     void printDegreeSequence() const;
     void printComponentsCount() const;
     void printBipartiteness();
+    void printEccentricity() const;
 
     Graph operator=(Graph other);
 };

@@ -30,8 +30,9 @@ int main()
         graph.printDegreeSequence();
         graph.printComponentsCount();
         graph.printBipartiteness();
+        graph.printEccentricity();
         //graph.debugPrintVertices();
-        for (size_t i = 0; i < 7; i++)
+        for (size_t i = 0; i < 6; i++)
         {
             printf("?\n");
         }

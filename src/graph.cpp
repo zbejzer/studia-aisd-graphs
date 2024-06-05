@@ -1,6 +1,8 @@
-#include "graph.hpp"
+#include "bfs.hpp"
 #include "dfs.hpp"
+#include "graph.hpp"
 #include "quicksort.hpp"
+#include "vertex.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -87,6 +89,7 @@ void Graph::printComponentsCount() const
 
     for (unsigned long int i = 0; i < vertices_count; i++)
     {
+#pragma warning(suppress : 6011)
         if (!visited[i])
         {
             components_count++;
@@ -107,6 +110,7 @@ void Graph::printBipartiteness()
 
     for (unsigned long int i = 0; i < vertices_count && is_bipartite; i++)
     {
+#pragma warning(suppress : 6011)
         if (!visited[i])
         {
             is_bipartite = bipartiteDfs(visited, &vertices[i], 0);
@@ -123,6 +127,24 @@ void Graph::printBipartiteness()
     {
         printf("F\n");
     }
+
+    return;
+}
+
+void Graph::printEccentricity() const
+{
+    bool *visited = static_cast<bool *>(malloc(sizeof(bool) * vertices_count));
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        #pragma warning(suppress : 6387)
+        memset(visited, 0, sizeof(bool) * vertices_count);
+
+        printf("%llu ", depthBfs(visited, &vertices[i]));
+    }
+    printf("\n");
+
+    free(visited);
 
     return;
 }
