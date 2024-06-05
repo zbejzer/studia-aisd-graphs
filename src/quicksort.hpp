@@ -1,15 +1,58 @@
 #pragma once
 
-#include <utility>
-#include <cstdio>
+#include "vertex.hpp"
 
-int compareULInt(const unsigned long int *a, const unsigned long int *b)
+#include <utility>
+
+int compareVerticesPointersByDegreeAsc(Vertex *const &a, Vertex *const &b)
 {
-    if (*a > *b)
+    if (a->neighbours_count < b->neighbours_count)
     {
         return -1;
     }
-    else if (*a == *b)
+    else if (a->neighbours_count == b->neighbours_count)
+    {
+        if (a->number > b->number)
+        {
+            return -1;
+        }
+        else if (a->number == b->number)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int compareVerticesPointersByDegree(Vertex *const &a, Vertex *const &b)
+{
+    if (a->neighbours_count > b->neighbours_count)
+    {
+        return -1;
+    }
+    else if (a->neighbours_count == b->neighbours_count)
+    {
+        if (a->number < b->number)
+        {
+            return -1;
+        }
+        else if (a->number == b->number)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int compareULInt(unsigned long int const &a, unsigned long int const &b)
+{
+    if (a > b)
+    {
+        return -1;
+    }
+    else if (a == b)
     {
         return 0;
     }
@@ -18,7 +61,7 @@ int compareULInt(const unsigned long int *a, const unsigned long int *b)
 }
 
 template <typename T>
-void quickSort(T arr[], unsigned long int start, unsigned long int end, int (*compar)(const T *, const T *))
+void quickSort(T arr[], unsigned long int start, unsigned long int end, int (*compar)(T const &, T const &))
 {
     if (start < end)
     {
@@ -27,12 +70,12 @@ void quickSort(T arr[], unsigned long int start, unsigned long int end, int (*co
 
         while (i <= j)
         {
-            while (compar(&arr[i], &pivot) < 0)
+            while (compar(arr[i], pivot) < 0)
             {
                 ++i;
             }
 
-            while (compar(&arr[j], &pivot) > 0)
+            while (compar(arr[j], pivot) > 0)
             {
                 --j;
             }

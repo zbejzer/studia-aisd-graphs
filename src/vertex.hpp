@@ -5,6 +5,7 @@ class Vertex
   public:
     unsigned long int number;
     unsigned long int colour;
+    unsigned long int saturation;
     unsigned long int neighbours_count;
     Vertex **neighbours;
 
@@ -13,7 +14,9 @@ class Vertex
     Vertex(const Vertex &other);
     ~Vertex();
 
-    void debugPrintShort();
+    void debugPrintShort() const;
+    void findFreeColour(bool *used_colours);
+    unsigned long int getSaturationDegree(unsigned long int max_vertices) const;
 
     Vertex operator=(Vertex other);
 };

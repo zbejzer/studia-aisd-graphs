@@ -137,7 +137,7 @@ void Graph::printEccentricity() const
 
     for (unsigned long int i = 0; i < vertices_count; i++)
     {
-        #pragma warning(suppress : 6387)
+#pragma warning(suppress : 6387)
         memset(visited, 0, sizeof(bool) * vertices_count);
 
         printf("%llu ", depthBfs(visited, &vertices[i]));
@@ -153,6 +153,128 @@ void Graph::printPlanarity() const
 {
     // TODO implement planarity test
     printf("?\n");
+}
+
+void Graph::printGreedyColours() const
+{
+    // TODO optimize by creating used colors in Graph class
+    bool *used_colours = static_cast<bool *>(malloc(sizeof(bool) * vertices_count));
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        vertices[i].colour = 0;
+    }
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        vertices[i].findFreeColour(used_colours);
+        printf("%lu ", vertices[i].colour);
+    }
+    free(used_colours);
+    printf("\n");
+
+    return;
+}
+
+void Graph::printLFColours() const
+{
+    // TODO optimize
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        vertices[i].colour = 0;
+    }
+
+    Vertex **sorted_vertices = static_cast<Vertex **>(malloc(sizeof(Vertex *) * vertices_count));
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        #pragma warning(suppress : 6011)
+        sorted_vertices[i] = &vertices[i];
+    }
+    quickSort<Vertex *>(sorted_vertices, 0, vertices_count - 1, compareVerticesPointersByDegree);
+
+    bool *used_colours = static_cast<bool *>(malloc(sizeof(bool) * vertices_count));
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        sorted_vertices[i]->findFreeColour(used_colours);
+    }
+    free(sorted_vertices);
+    free(used_colours);
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        printf("%lu ", vertices[i].colour);
+    }
+    printf("\n");
+
+    return;
+}
+
+void Graph::printSLFColours() const
+{
+    // TODO optimize
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        vertices[i].colour = 0;
+    }
+
+    /*Vertex **sorted_vertices = static_cast<Vertex **>(malloc(sizeof(Vertex *) * vertices_count));
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        #pragma warning(suppress : 6011)
+        sorted_vertices[i] = &vertices[i];
+    }
+    quickSort<Vertex *>(sorted_vertices, 0, vertices_count - 1, compareVerticesPointersByDegreeAsc);*/
+
+    bool *used_colours = static_cast<bool *>(malloc(sizeof(bool) * vertices_count));
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        Vertex *selected_vertex = nullptr;
+        //unsigned long int highest_saturation_i = 0;
+        unsigned long int highest_saturation = 0;
+
+        // finding uncoloured vertex with highest saturation 
+        for (unsigned long int j = 0; j < vertices_count; j++)
+        {
+            if (vertices[j].colour == 0)
+            {
+                unsigned long int current_saturation = vertices[j].getSaturationDegree(vertices_count);
+                if (current_saturation > highest_saturation || selected_vertex == nullptr)
+                {
+                    selected_vertex = &vertices[j];
+                    highest_saturation = current_saturation;
+                }
+                else if (current_saturation == highest_saturation)
+                {
+                    if (vertices[j].neighbours_count > selected_vertex->neighbours_count)
+                    {
+                        selected_vertex = &vertices[j];
+                        highest_saturation = current_saturation;
+                    }
+                    else if (vertices[j].neighbours_count == selected_vertex->neighbours_count)
+                    {
+                        if (j < selected_vertex->number)
+                        {
+                            selected_vertex = &vertices[j];
+                            highest_saturation = current_saturation;
+                        }
+                    }
+                }
+            }
+        }
+
+        selected_vertex->findFreeColour(used_colours);
+        //printf("%lu ", selected_vertex->number);
+    }
+    //printf("\n");
+    //free(sorted_vertices);
+    free(used_colours);
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        printf("%lu ", vertices[i].colour);
+    }
+    printf("\n");
+
+    return;
 }
 
 Graph Graph::operator=(Graph other)

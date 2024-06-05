@@ -2,7 +2,7 @@
 #include "vertex.hpp"
 
 // Marks visited elements in the bool array
-// The bool array needs to at least the size of count of all elements that can be accessed
+// The bool array needs to be at least the size of count of all elements that can be accessed
 void depthFirstSearch(bool *visited, Vertex *root)
 {
     if (!visited[root->number])
@@ -19,7 +19,7 @@ void depthFirstSearch(bool *visited, Vertex *root)
 }
 
 // Marks visited elements in the bool array and colours them
-// The bool array needs to at least the size of count of all elements that can be accessed
+// The bool array needs to be at least the size of count of all elements that can be accessed
 bool bipartiteDfs(bool *visited, Vertex *root, char desired_colour)
 {
     if (!visited[root->number])

@@ -40,6 +40,7 @@ template <typename T> void Queue<T>::adjustSize()
     {
         memcpy(data, data + front_i, sizeof(T) * real_size);
         real_size = real_size >> 1;
+        #pragma warning(suppress : 6308)
         data = static_cast<T *>(realloc(data, sizeof(T) * real_size));
         front_i = 0;
         rear_i = used_size - 1;
@@ -47,6 +48,7 @@ template <typename T> void Queue<T>::adjustSize()
     else if (rear_i + 1 > real_size)
     {
         real_size = real_size << 1;
+        #pragma warning(suppress : 6308)
         data = static_cast<T *>(realloc(data, sizeof(T) * real_size));
     }
 }

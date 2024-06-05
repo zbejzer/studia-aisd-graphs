@@ -31,8 +31,12 @@ int main()
         graph.printComponentsCount();
         graph.printBipartiteness();
         graph.printEccentricity();
+        graph.printPlanarity();
+        graph.printGreedyColours();
+        graph.printLFColours();
+        graph.printSLFColours();
         //graph.debugPrintVertices();
-        for (size_t i = 0; i < 6; i++)
+        for (size_t i = 0; i < 2; i++)
         {
             printf("?\n");
         }
