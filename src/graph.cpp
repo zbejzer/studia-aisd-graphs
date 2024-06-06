@@ -1,9 +1,9 @@
-#include "graph.hpp"
 #include "bipartite_dfs.hpp"
 #include "depth_bfs.hpp"
+#include "graph.hpp"
 #include "quicksort.hpp"
-#include "vertex.hpp"
 #include "subgraphs_dfs.hpp"
+#include "vertex.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -242,6 +242,24 @@ void Graph::printC4SubgraphsCount() const
     }
 
     printf("%llu\n", subgraphs_sum / 8);
+
+    return;
+}
+
+void Graph::printComplementEdgesCount() const
+{
+    unsigned long long int edges_count = 0;
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        edges_count += vertices[i].neighbours_count;
+    }
+
+    edges_count /= 2;
+
+    printf("%llu\n", (vertices_count * (vertices_count - 1) / 2) - edges_count);
+
+    return;
 }
 
 Graph Graph::operator=(Graph other)

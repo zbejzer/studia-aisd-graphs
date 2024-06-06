@@ -23,6 +23,7 @@ class Graph
     void printLFColours();
     void printSLFColours();
     void printC4SubgraphsCount() const;
+    void printComplementEdgesCount() const;
 
     Graph operator=(Graph other);
 };

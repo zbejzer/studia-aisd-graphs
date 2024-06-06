@@ -35,11 +35,7 @@ int main()
         graph.printLFColours();
         graph.printSLFColours();
         graph.printC4SubgraphsCount();
-        //graph.debugPrintVertices();
-        for (size_t i = 0; i < 1; i++)
-        {
-            printf("?\n");
-        }
+        graph.printComplementEdgesCount();
     }
 
     return 0;
