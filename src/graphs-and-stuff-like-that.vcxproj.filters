@@ -35,10 +35,10 @@
     <ClInclude Include="quicksort.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dfs.hpp">
+    <ClInclude Include="bipartite_dfs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bfs.hpp">
+    <ClInclude Include="depth_bfs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="queue.hpp">

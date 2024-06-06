@@ -15,8 +15,8 @@ class Vertex
     ~Vertex();
 
     void debugPrintShort() const;
-    void findFreeColour(bool *used_colours);
-    unsigned long int getSaturationDegree(unsigned long int max_vertices) const;
+    void setFreeColour(bool *used_colours);
+    unsigned long int getSaturationDegree(bool *used_colours, const unsigned long int &max_vertices) const;
 
     Vertex operator=(Vertex other);
 };

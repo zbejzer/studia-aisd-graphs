@@ -14,9 +14,9 @@ class Graph
     ~Graph();
 
     void debugPrintVertices() const;
+    void printVerticesColours() const;
     void printDegreeSequence() const;
-    void printComponentsCount() const;
-    void printBipartiteness();
+    void printComponentsCountAndBipartiteness() const;
     void printEccentricity() const;
     void printPlanarity() const;
     void printGreedyColours() const;

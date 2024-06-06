@@ -48,12 +48,12 @@ void Vertex::debugPrintShort() const
 }
 
 // The bool array needs to be at least the size of count of all vertices in given graph
-void Vertex::findFreeColour(bool *used_colours)
+void Vertex::setFreeColour(bool *used_colours)
 {
     if (neighbours_count > 0)
     {
         #pragma warning(suppress : 6387)
-        // zeroing used colours including the one past the neigbours count that's guaranteed to be free
+        // zeroing used colours including the one past the neighbours count that's guaranteed to be free
         memset(used_colours, 0, sizeof(bool) * neighbours_count + 1);
         for (unsigned long int i = 0; i < neighbours_count; i++)
         {
@@ -71,7 +71,7 @@ void Vertex::findFreeColour(bool *used_colours)
             if (!used_colours[i])
             {
                 colour = i + 1;
-                break;
+                return;
             }
         }
     }
@@ -83,13 +83,14 @@ void Vertex::findFreeColour(bool *used_colours)
     return;
 }
 
-unsigned long int Vertex::getSaturationDegree(unsigned long int max_vertices) const
+unsigned long int Vertex::getSaturationDegree(bool *used_colours, const unsigned long int &max_vertices) const
 {
     unsigned long int saturation_degree = 0;
-    bool *used_colours = static_cast<bool *>(calloc(max_vertices, sizeof(bool)));
+    memset(used_colours, 0, max_vertices * sizeof(bool));
 
     for (unsigned long int i = 0; i < neighbours_count; i++)
     {
+#pragma warning(suppress : 6011)
         if (neighbours[i]->colour != 0 && !used_colours[neighbours[i]->colour - 1])
         {
             saturation_degree++;

@@ -24,8 +24,8 @@
     <ClCompile Include="vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bfs.hpp" />
-    <ClInclude Include="dfs.hpp" />
+    <ClInclude Include="depth_bfs.hpp" />
+    <ClInclude Include="bipartite_dfs.hpp" />
     <ClInclude Include="graph.hpp" />
     <ClInclude Include="queue.hpp" />
     <ClInclude Include="quicksort.hpp" />

@@ -28,8 +28,7 @@ int main()
             }
         }
         graph.printDegreeSequence();
-        graph.printComponentsCount();
-        graph.printBipartiteness();
+        graph.printComponentsCountAndBipartiteness();
         graph.printEccentricity();
         graph.printPlanarity();
         graph.printGreedyColours();

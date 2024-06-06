@@ -3,7 +3,7 @@
 #include "queue.hpp"
 #include "vertex.hpp"
 
-// Marks visited elements in the bool array and returns the maximum distance to the 
+// Marks visited elements in the bool array and returns the maximum distance to a connected vertex
 // The bool array needs to be at least the size of count of all elements that can be accessed
 unsigned long long int depthBfs(bool *visited, Vertex *root)
 {
