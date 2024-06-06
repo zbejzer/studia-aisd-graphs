@@ -19,9 +19,10 @@ class Graph
     void printComponentsCountAndBipartiteness() const;
     void printEccentricity() const;
     void printPlanarity() const;
-    void printGreedyColours() const;
-    void printLFColours() const;
-    void printSLFColours() const;
+    void printGreedyColours();
+    void printLFColours();
+    void printSLFColours();
+    void printC4SubgraphsCount() const;
 
     Graph operator=(Graph other);
 };

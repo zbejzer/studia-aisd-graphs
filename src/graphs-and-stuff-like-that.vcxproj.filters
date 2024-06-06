@@ -44,5 +44,8 @@
     <ClInclude Include="queue.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="subgraphs_dfs.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

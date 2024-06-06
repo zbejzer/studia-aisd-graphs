@@ -29,6 +29,7 @@
     <ClInclude Include="graph.hpp" />
     <ClInclude Include="queue.hpp" />
     <ClInclude Include="quicksort.hpp" />
+    <ClInclude Include="subgraphs_dfs.hpp" />
     <ClInclude Include="vertex.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -3,6 +3,7 @@
 #include "depth_bfs.hpp"
 #include "quicksort.hpp"
 #include "vertex.hpp"
+#include "subgraphs_dfs.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -144,7 +145,7 @@ void Graph::printPlanarity() const
     printf("?\n");
 }
 
-void Graph::printGreedyColours() const
+void Graph::printGreedyColours()
 {
     bool *used_colours = static_cast<bool *>(malloc(sizeof(bool) * vertices_count));
     for (unsigned long int i = 0; i < vertices_count; i++)
@@ -162,7 +163,7 @@ void Graph::printGreedyColours() const
     return;
 }
 
-void Graph::printLFColours() const
+void Graph::printLFColours()
 {
     Vertex **sorted_vertices = static_cast<Vertex **>(malloc(sizeof(Vertex *) * vertices_count));
     for (unsigned long int i = 0; i < vertices_count; i++)
@@ -186,7 +187,7 @@ void Graph::printLFColours() const
     return;
 }
 
-void Graph::printSLFColours() const
+void Graph::printSLFColours()
 {
     for (unsigned long int i = 0; i < vertices_count; i++)
     {
@@ -218,16 +219,29 @@ void Graph::printSLFColours() const
                     highest_saturation = current_saturation;
                 }
             }
-
-            selected_vertex->setFreeColour(used_colours);
         }
-        free(used_colours);
-        free(saturation_used_colours);
 
-        printVerticesColours();
-
-        return;
+        selected_vertex->setFreeColour(used_colours);
     }
+
+    free(used_colours);
+    free(saturation_used_colours);
+
+    printVerticesColours();
+
+    return;
+}
+
+void Graph::printC4SubgraphsCount() const
+{
+    unsigned long long int subgraphs_sum = 0;
+
+    for (unsigned long int i = 0; i < vertices_count; i++)
+    {
+        subgraphsDfs(&vertices[i], nullptr, &vertices[i], 0, &subgraphs_sum);
+    }
+
+    printf("%llu\n", subgraphs_sum / 8);
 }
 
 Graph Graph::operator=(Graph other)
